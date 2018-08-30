@@ -1,0 +1,12 @@
+.registration h2{
+    margin-bottom: 50px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.btn{
+    float: right;
+    background-color: #c0c0c0;
+    border-color: #484848;
+    width: 20%;
+}
