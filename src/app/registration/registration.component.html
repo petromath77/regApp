@@ -3,28 +3,57 @@
     <div class="row">
       <div class="col-xs-12 offset-xs-2 col-md-8 offset-md-2">
         <h2>Registration</h2>
-        <form>
+        <form #frm="ngForm">
           <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input type="email" class="form-control" id="inputName" aria-describedby="name" placeholder="Name">
+            <label for="inputName">Name</label>
+            <input type="name" class="form-control" id="inputName" aria-describedby="name" placeholder="Name*" required ngModel name="firstName" required pattern="[a-zA-Z][a-zA-Z ]+" #nameUser="ngModel" (ngModelChange)="onNameChange($event)">
+            <div *ngIf="nameUser.touched && nameUser.errors?.required" class="alert alert-danger">
+              Name is Required!
+            </div>
+            <div *ngIf="nameUser.errors?.pattern" class="alert alert-danger">
+              Invalid Name!
+            </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Login</label>
-            <input type="password" class="form-control" id="inputLogin" placeholder="Login">
+            <label for="inputLogin">Login</label>
+            <input type="login" class="form-control" id="inputLogin" placeholder="Login*" reqired ngModel name="login" required pattern="^[a-z0-9_-]{3,16}$" #loginUser="ngModel">
+            <div *ngIf="loginUser.touched && loginUser.errors?.required" class="alert alert-danger">
+              Login is Required!
+            </div>
+            <div *ngIf="loginUser.errors?.pattern" class="alert alert-danger">
+              Invalid Login!
+            </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Email</label>
-            <input type="password" class="form-control" id="inputEmail" placeholder="Email">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email*" reqired ngModel name="email" required pattern="^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$" #emailUser="ngModel">
+            <div *ngIf="emailUser.touched && emailUser.errors?.required" class="alert alert-danger">
+              Email is Required!
+            </div>
+            <div *ngIf="emailUser.errors?.pattern" class="alert alert-danger">
+              Invalid Email!
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          <div ngModelGroup="passwordGroup">
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password*" required ngModel name="password" required pattern="^[a-z0-9_-]{6,18}$" #passwordUser="ngModel">
+              <div *ngIf="passwordUser.touched && passwordUser.errors?.required" class="alert alert-danger">
+                Password is Required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputConfirm">Confirm Password</label>
+              <input type="password" appConfirmPassword="password" class="form-control" id="inputConfirm" placeholder="Confirm Password*" required ngModel name="confirm" #confirmPas="ngModel">
+              <div *ngIf="confirmPas.touched && confirmPas.errors?.required" class="alert alert-danger">
+                Confirm Password!
+              </div>
+              <div *ngIf="confirmPas.touched && confirmPas.errors?.notEqual && !confirmPas.errors?.reqired" class="alert alert-danger">
+                Does not match with Password!
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Repeat Password</label>
-            <input type="password" class="form-control" id="inputRepeat" placeholder="Repeat Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Next</button>
+          <button type="submit" class="btn btn-primary" routerLink="/greeting">Next</button>
         </form>
       </div>
     </div>

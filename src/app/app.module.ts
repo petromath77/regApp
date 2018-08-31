@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmPassword } from './confirm-password.directive';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
     AppComponent,
     RegistrationComponent,
     GreetingComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmPassword
   ],
   imports: [
     BrowserModule,
